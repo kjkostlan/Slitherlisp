@@ -1,12 +1,9 @@
 # Patch system: Allows making and removing patches to variables.
 # (Of course this requires functions that get variables from modules)
 import sys
-from Termpylus_core import gl_data
+import proj
 
-if 'ppaglobals' not in gl_data.dataset:
-    # Name-qual => function; name-qual => inputs-as-dict.
-    gl_data.dataset['ppaglobals'] = {'original_varss':{}}
-_gld = gl_data.dataset['ppaglobals']
+_gld = proj.global_get('ppaglobals', {'original_varss':{}}) # Name-qual => function; name-qual => inputs-as-dict.
 
 def _v0(modulename, var_name):
     return _gld['original_varss'].get(modulename,{}).get(var_name,None)
